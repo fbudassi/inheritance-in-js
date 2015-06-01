@@ -1,3 +1,5 @@
+'use strict';
+
 // Initialize App.
 var app = new App({
   totalDepots: $("#total-depots"),

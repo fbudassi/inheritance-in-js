@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * App Main Class. It extends EventEmitter to let the class fire events and react to them.
  */

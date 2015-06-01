@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Financial Maplet.
  */

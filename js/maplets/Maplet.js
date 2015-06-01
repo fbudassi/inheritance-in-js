@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Maplet Base. It extends EventEmitter to let maplets fire events and react to them.
  */

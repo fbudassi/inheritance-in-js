@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Common features inherited by DepotsMaplet and SchoolsMaplet.
  */
