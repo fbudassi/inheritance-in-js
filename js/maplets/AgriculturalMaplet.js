@@ -24,6 +24,9 @@ AgriculturalMaplet.Crops = {
   GROUND_NUTS: {id: "GROUND_NUTS", name: "Ground Nuts", pricePerKg: 3, kgPerHectare: 330}
 };
 
+// Freeze object to prevent accidental changes.
+utils.deepFreeze(AgriculturalMaplet);
+
 /**
  * Set crop type.
  * @param crop An integer bigger than 0.

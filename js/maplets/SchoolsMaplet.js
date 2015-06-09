@@ -18,6 +18,9 @@ SchoolsMaplet.Events = {
   SCHOOLS_CHANGE: "schoolsChange"
 };
 
+// Freeze object to prevent accidental changes.
+utils.deepFreeze(SchoolsMaplet);
+
 /**
  * Set the total number of schools.
  * @param schools An integer bigger than 0.

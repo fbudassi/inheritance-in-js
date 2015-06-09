@@ -33,6 +33,9 @@ FinancialMaplet.Events = {
   TOTAL_AMOUNT_CHANGE: "totalAmountChange"
 };
 
+// Freeze object to prevent accidental changes.
+utils.deepFreeze(FinancialMaplet);
+
 /**
  * Set the total number of hectares.
  * @param cropHectares A number bigger than 0.

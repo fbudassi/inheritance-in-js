@@ -35,6 +35,9 @@ FarmersMaplet.Events = {
   TOTAL_HECTARES_CHANGE: "totalHectaresChange"
 };
 
+// Freeze object to prevent accidental changes.
+utils.deepFreeze(FarmersMaplet);
+
 /**
  * Set the total number of farmers.
  * @param farmers An integer bigger than 0.

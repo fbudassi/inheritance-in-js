@@ -18,6 +18,9 @@ DepotsMaplet.Events = {
   DEPOTS_CHANGE: "depotsChange"
 };
 
+// Freeze object to prevent accidental changes.
+utils.deepFreeze(DepotsMaplet);
+
 /**
  * Set the total number of depots.
  * @param depots An integer bigger than 0.
