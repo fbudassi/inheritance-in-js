@@ -4,13 +4,13 @@
  * Namespace used to store commonly used functions throughout the application.
  * @type {{}}
  */
-var utils = {};
+var Utils = {};
 
 /**
  * To make an object fully immutable, freeze each object inside.
  * @param object
  */
-utils.deepFreeze = function deepFreeze(object) {
+Utils.deepFreeze = function deepFreeze(object) {
   var prop, propKey;
   Object.freeze(object); // First freeze the object.
   for (propKey in object) {

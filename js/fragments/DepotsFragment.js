@@ -1,31 +1,31 @@
 'use strict';
 
 /**
- * Depots Maplet.
+ * Depots Fragment.
  */
-function DepotsMaplet(name, activeCircle, totalDepots) {
-  CircleMaplet.call(this, name, activeCircle); // Call parent's constructor.
+function DepotsFragment(name, activeCircle, totalDepots) {
+  CircleFragment.call(this, name, activeCircle); // Call parent's constructor.
   this.setTotalDepots(totalDepots);
 }
 
-DepotsMaplet.prototype = Object.create(CircleMaplet.prototype);
-DepotsMaplet.prototype.constructor = DepotsMaplet;
+DepotsFragment.prototype = Object.create(CircleFragment.prototype);
+DepotsFragment.prototype.constructor = DepotsFragment;
 
 // Constructor Constants.
-DepotsMaplet.DEFAULT_TOTAL_DEPOTS = 40;
-DepotsMaplet.DEFAULT_ACTIVE_CIRCLE = 50;
-DepotsMaplet.Events = {
+DepotsFragment.DEFAULT_TOTAL_DEPOTS = 40;
+DepotsFragment.DEFAULT_ACTIVE_CIRCLE = 50;
+DepotsFragment.Events = {
   DEPOTS_CHANGE: "depotsChange"
 };
 
 // Freeze object to prevent accidental changes.
-utils.deepFreeze(DepotsMaplet);
+Utils.deepFreeze(DepotsFragment);
 
 /**
  * Set the total number of depots.
  * @param depots An integer bigger than 0.
  */
-DepotsMaplet.prototype.setTotalDepots = function (depots) {
+DepotsFragment.prototype.setTotalDepots = function (depots) {
   if (typeof depots !== 'number' || (depots % 1) !== 0 || depots < 0) {
     console.error("Number of depots is invalid.");
     return;
@@ -39,7 +39,7 @@ DepotsMaplet.prototype.setTotalDepots = function (depots) {
  * Return the _totalDepots;
  * @returns {*}
  */
-DepotsMaplet.prototype.getTotalDepots = function () {
+DepotsFragment.prototype.getTotalDepots = function () {
   return this._totalDepots;
 };
 
@@ -47,7 +47,7 @@ DepotsMaplet.prototype.getTotalDepots = function () {
  * Return the number of selected depots.
  * @returns {number|*}
  */
-DepotsMaplet.prototype.getSelectedDepots = function () {
+DepotsFragment.prototype.getSelectedDepots = function () {
   return this._selectedDepots;
 };
 
@@ -55,7 +55,7 @@ DepotsMaplet.prototype.getSelectedDepots = function () {
  * Recalculate the number of _selectedDepots according to the _activeCircle.
  * @private
  */
-DepotsMaplet.prototype._recalculate = function () {
+DepotsFragment.prototype._recalculate = function () {
   this._selectedDepots = Math.round(this._activeCircle * this._totalDepots / 100);
-  this.emitEvent(DepotsMaplet.Events.DEPOTS_CHANGE, [this._selectedDepots]);
+  this.emitEvent(DepotsFragment.Events.DEPOTS_CHANGE, [this._selectedDepots]);
 };

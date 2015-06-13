@@ -1,23 +1,23 @@
 'use strict';
 
 /**
- * Agricultural Maplet.
+ * Agricultural Fragment.
  */
-function AgriculturalMaplet(name, crop) {
-  Maplet.call(this, name); // Call parent's constructor.
+function AgriculturalFragment(name, crop) {
+  Fragment.call(this, name); // Call parent's constructor.
   this.setCrop(crop);
 }
 
-AgriculturalMaplet.prototype = Object.create(Maplet.prototype);
-AgriculturalMaplet.prototype.constructor = AgriculturalMaplet;
+AgriculturalFragment.prototype = Object.create(Fragment.prototype);
+AgriculturalFragment.prototype.constructor = AgriculturalFragment;
 
 // Constructor Constants.
-AgriculturalMaplet.Events = {
+AgriculturalFragment.Events = {
   PRICE_PER_KG_CHANGE: "pricePerKgChange",
   KG_PER_HECTARE_CHANGE: "kgPerHectareChange"
 };
 
-AgriculturalMaplet.Crops = {
+AgriculturalFragment.Crops = {
   MAIZE: {id: "MAIZE", name: "Maize", pricePerKg: 1.5, kgPerHectare: 1000},
   SORGHUM: {id: "SORGHUM", name: "Sorghum", pricePerKg: 1, kgPerHectare: 1500},
   TOBACCO: {id: "TOBACCO", name: "Tobacco", pricePerKg: 2, kgPerHectare: 500},
@@ -25,19 +25,19 @@ AgriculturalMaplet.Crops = {
 };
 
 // Freeze object to prevent accidental changes.
-utils.deepFreeze(AgriculturalMaplet);
+Utils.deepFreeze(AgriculturalFragment);
 
 /**
  * Set crop type.
  * @param crop An integer bigger than 0.
  */
-AgriculturalMaplet.prototype.setCrop = function (crop) {
-  if (AgriculturalMaplet.Crops[crop] === undefined) {
+AgriculturalFragment.prototype.setCrop = function (crop) {
+  if (AgriculturalFragment.Crops[crop] === undefined) {
     console.error("Crop type is invalid.");
     return;
   }
 
-  this._crop = AgriculturalMaplet.Crops[crop];
+  this._crop = AgriculturalFragment.Crops[crop];
 
   // Set default values based on crop type.
   this.setPricePerKg(this._crop.pricePerKg);
@@ -48,7 +48,7 @@ AgriculturalMaplet.prototype.setCrop = function (crop) {
  * Return the _crop.
  * @returns {*}
  */
-AgriculturalMaplet.prototype.getCrop = function () {
+AgriculturalFragment.prototype.getCrop = function () {
   return this._crop;
 };
 
@@ -56,21 +56,21 @@ AgriculturalMaplet.prototype.getCrop = function () {
  * Set the pricePerKg.
  * @param pricePerKg A number bigger than 0.
  */
-AgriculturalMaplet.prototype.setPricePerKg = function (pricePerKg) {
+AgriculturalFragment.prototype.setPricePerKg = function (pricePerKg) {
   if (typeof pricePerKg !== 'number' || pricePerKg < 0) {
     console.error("Price per Kg is invalid.");
     return;
   }
 
   this._pricePerKg = pricePerKg;
-  this.emitEvent(AgriculturalMaplet.Events.PRICE_PER_KG_CHANGE, [this._pricePerKg]);
+  this.emitEvent(AgriculturalFragment.Events.PRICE_PER_KG_CHANGE, [this._pricePerKg]);
 };
 
 /**
  * Return the pricePerKg.
  * @returns {number|*}
  */
-AgriculturalMaplet.prototype.getPricePerKg = function () {
+AgriculturalFragment.prototype.getPricePerKg = function () {
   return this._pricePerKg;
 };
 
@@ -78,20 +78,20 @@ AgriculturalMaplet.prototype.getPricePerKg = function () {
  * Set the kgPerHectare.
  * @param kgPerHectare A number bigger than 0.
  */
-AgriculturalMaplet.prototype.setKgPerHectare = function (kgPerHectare) {
+AgriculturalFragment.prototype.setKgPerHectare = function (kgPerHectare) {
   if (typeof kgPerHectare !== 'number' || kgPerHectare < 0) {
     console.error("Kg per hectare is invalid.");
     return;
   }
 
   this._kgPerHectare = kgPerHectare;
-  this.emitEvent(AgriculturalMaplet.Events.KG_PER_HECTARE_CHANGE, [this._kgPerHectare]);
+  this.emitEvent(AgriculturalFragment.Events.KG_PER_HECTARE_CHANGE, [this._kgPerHectare]);
 };
 
 /**
  * Return the kgPerHectare.
  * @returns {number|*}
  */
-AgriculturalMaplet.prototype.getKgPerHectare = function () {
+AgriculturalFragment.prototype.getKgPerHectare = function () {
   return this._kgPerHectare;
 };

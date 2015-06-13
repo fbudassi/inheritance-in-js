@@ -1,48 +1,48 @@
 'use strict';
 
 /**
- * Farmers Maplet.
+ * Farmers Fragment.
  */
-function FarmersMaplet(name, totalFarmers, hectaresPerFarmer, depotsMaplet, schoolsMaplet) {
-  Maplet.call(this, name); // Call parent's constructor.
+function FarmersFragment(name, totalFarmers, hectaresPerFarmer, depotsFragment, schoolsFragment) {
+  Fragment.call(this, name); // Call parent's constructor.
 
   // Set default initial values.
   this.setTotalFarmers(totalFarmers);
   this.setHectaresPerFarmer(hectaresPerFarmer);
-  this.setDepots(depotsMaplet.getSelectedDepots());
-  this.setSchools(schoolsMaplet.getSelectedSchools());
+  this.setDepots(depotsFragment.getSelectedDepots());
+  this.setSchools(schoolsFragment.getSelectedSchools());
 
-  // Register listeners to other maplets.
+  // Register listeners to other fragments.
   var that = this;
-  depotsMaplet.addListener(DepotsMaplet.Events.DEPOTS_CHANGE, function (value) {
+  depotsFragment.addListener(DepotsFragment.Events.DEPOTS_CHANGE, function (value) {
     that.setDepots(value);
   });
-  schoolsMaplet.addListener(SchoolsMaplet.Events.SCHOOLS_CHANGE, function (value) {
+  schoolsFragment.addListener(SchoolsFragment.Events.SCHOOLS_CHANGE, function (value) {
     that.setSchools(value);
   });
 }
 
-FarmersMaplet.prototype = Object.create(Maplet.prototype);
-FarmersMaplet.prototype.constructor = FarmersMaplet;
+FarmersFragment.prototype = Object.create(Fragment.prototype);
+FarmersFragment.prototype.constructor = FarmersFragment;
 
 // Constructor Constants.
-FarmersMaplet.FARMERS_PER_SCHOOL = 20;
-FarmersMaplet.FARMERS_PER_DEPOT = 50;
-FarmersMaplet.DEFAULT_TOTAL_FARMERS = 1000;
-FarmersMaplet.DEFAULT_HECTARES_PER_FARMER = 1.8;
-FarmersMaplet.Events = {
+FarmersFragment.FARMERS_PER_SCHOOL = 20;
+FarmersFragment.FARMERS_PER_DEPOT = 50;
+FarmersFragment.DEFAULT_TOTAL_FARMERS = 1000;
+FarmersFragment.DEFAULT_HECTARES_PER_FARMER = 1.8;
+FarmersFragment.Events = {
   FARMERS_CHANGE: "farmersChange",
   TOTAL_HECTARES_CHANGE: "totalHectaresChange"
 };
 
 // Freeze object to prevent accidental changes.
-utils.deepFreeze(FarmersMaplet);
+Utils.deepFreeze(FarmersFragment);
 
 /**
  * Set the total number of farmers.
  * @param farmers An integer bigger than 0.
  */
-FarmersMaplet.prototype.setTotalFarmers = function (farmers) {
+FarmersFragment.prototype.setTotalFarmers = function (farmers) {
   if (typeof farmers !== 'number' || (farmers % 1) !== 0 || farmers < 0) {
     console.error("Number of totalFarmers is invalid.");
     return;
@@ -56,7 +56,7 @@ FarmersMaplet.prototype.setTotalFarmers = function (farmers) {
  * Return the _totalFarmers.
  * @returns {number|*}
  */
-FarmersMaplet.prototype.getTotalFarmers = function () {
+FarmersFragment.prototype.getTotalFarmers = function () {
   return this._totalFarmers;
 };
 
@@ -64,7 +64,7 @@ FarmersMaplet.prototype.getTotalFarmers = function () {
  * Set the number of hectares per farmer.
  * @param hectaresPerFarmer A number bigger than 0.
  */
-FarmersMaplet.prototype.setHectaresPerFarmer = function (hectaresPerFarmer) {
+FarmersFragment.prototype.setHectaresPerFarmer = function (hectaresPerFarmer) {
   if (typeof hectaresPerFarmer !== 'number' || hectaresPerFarmer < 0) {
     console.error("Number of hectaresPerFarmer is invalid.");
     return;
@@ -78,7 +78,7 @@ FarmersMaplet.prototype.setHectaresPerFarmer = function (hectaresPerFarmer) {
  * Return the _hectaresPerFarmer.
  * @returns {number|*}
  */
-FarmersMaplet.prototype.getHectaresPerFarmer = function () {
+FarmersFragment.prototype.getHectaresPerFarmer = function () {
   return this._hectaresPerFarmer;
 };
 
@@ -86,7 +86,7 @@ FarmersMaplet.prototype.getHectaresPerFarmer = function () {
  * Set the number of selected depots.
  * @param depots
  */
-FarmersMaplet.prototype.setDepots = function (depots) {
+FarmersFragment.prototype.setDepots = function (depots) {
   if (typeof depots !== 'number' || (depots % 1) !== 0 || depots < 0) {
     console.error("Number of depots is invalid.");
     return;
@@ -100,7 +100,7 @@ FarmersMaplet.prototype.setDepots = function (depots) {
  * Set the number of selected schools.
  * @param schools
  */
-FarmersMaplet.prototype.setSchools = function (schools) {
+FarmersFragment.prototype.setSchools = function (schools) {
   if (typeof schools !== 'number' || (schools % 1) !== 0 || schools < 0) {
     console.error("Number of schools is invalid.");
     return;
@@ -114,7 +114,7 @@ FarmersMaplet.prototype.setSchools = function (schools) {
  * Return the total number of hectares.
  * @returns {number|*}
  */
-FarmersMaplet.prototype.getTotalHectares = function () {
+FarmersFragment.prototype.getTotalHectares = function () {
   return this._totalHectares;
 };
 
@@ -123,15 +123,15 @@ FarmersMaplet.prototype.getTotalHectares = function () {
  * If result is bigger than _totalFarmers, limit it to this value.
  * @private
  */
-FarmersMaplet.prototype._recalculateSelectedFarmers = function () {
+FarmersFragment.prototype._recalculateSelectedFarmers = function () {
   if (typeof this._depots !== "number" || typeof this._schools !== "number" || typeof this._totalFarmers !== "number") {
     return;
   }
 
-  var farmersPerDepots = Math.min(this._depots * FarmersMaplet.FARMERS_PER_DEPOT, this._totalFarmers);
-  var farmersPerSchools = Math.min(this._schools * FarmersMaplet.FARMERS_PER_SCHOOL, this._totalFarmers);
+  var farmersPerDepots = Math.min(this._depots * FarmersFragment.FARMERS_PER_DEPOT, this._totalFarmers);
+  var farmersPerSchools = Math.min(this._schools * FarmersFragment.FARMERS_PER_SCHOOL, this._totalFarmers);
   this._selectedFarmers = Math.round((farmersPerDepots + farmersPerSchools) / 2);
-  this.emitEvent(FarmersMaplet.Events.FARMERS_CHANGE, [this._selectedFarmers]);
+  this.emitEvent(FarmersFragment.Events.FARMERS_CHANGE, [this._selectedFarmers]);
 
   // Selected farmers affects the total number of hectares.
   this._recalculateTotalHectares();
@@ -141,11 +141,11 @@ FarmersMaplet.prototype._recalculateSelectedFarmers = function () {
  * Recalculate the number of _totalHecters based on the _selectedFarmers and _hectaresPerFarmer.
  * @private
  */
-FarmersMaplet.prototype._recalculateTotalHectares = function () {
+FarmersFragment.prototype._recalculateTotalHectares = function () {
   if (typeof this._selectedFarmers !== "number" || typeof this._hectaresPerFarmer !== "number") {
     return;
   }
 
   this._totalHectares = Math.round(this._selectedFarmers * this._hectaresPerFarmer * 100) / 100;
-  this.emitEvent(FarmersMaplet.Events.TOTAL_HECTARES_CHANGE, [this._totalHectares]);
+  this.emitEvent(FarmersFragment.Events.TOTAL_HECTARES_CHANGE, [this._totalHectares]);
 };

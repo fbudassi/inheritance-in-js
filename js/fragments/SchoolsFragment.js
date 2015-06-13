@@ -1,31 +1,31 @@
 'use strict';
 
 /**
- * Schools Maplet.
+ * Schools Fragment.
  */
-function SchoolsMaplet(name, activeCircle, totalSchools) {
-  CircleMaplet.call(this, name, activeCircle); // Call parent's constructor.
+function SchoolsFragment(name, activeCircle, totalSchools) {
+  CircleFragment.call(this, name, activeCircle); // Call parent's constructor.
   this.setTotalSchools(totalSchools);
 }
 
-SchoolsMaplet.prototype = Object.create(CircleMaplet.prototype);
-SchoolsMaplet.prototype.constructor = SchoolsMaplet;
+SchoolsFragment.prototype = Object.create(CircleFragment.prototype);
+SchoolsFragment.prototype.constructor = SchoolsFragment;
 
 // Constructor Constants.
-SchoolsMaplet.DEFAULT_TOTAL_SCHOOLS = 70;
-SchoolsMaplet.DEFAULT_ACTIVE_CIRCLE = 50;
-SchoolsMaplet.Events = {
+SchoolsFragment.DEFAULT_TOTAL_SCHOOLS = 70;
+SchoolsFragment.DEFAULT_ACTIVE_CIRCLE = 50;
+SchoolsFragment.Events = {
   SCHOOLS_CHANGE: "schoolsChange"
 };
 
 // Freeze object to prevent accidental changes.
-utils.deepFreeze(SchoolsMaplet);
+Utils.deepFreeze(SchoolsFragment);
 
 /**
  * Set the total number of schools.
  * @param schools An integer bigger than 0.
  */
-SchoolsMaplet.prototype.setTotalSchools = function (schools) {
+SchoolsFragment.prototype.setTotalSchools = function (schools) {
   if (typeof schools !== 'number' || (schools % 1) !== 0 || schools < 0) {
     console.error("Number of schools is invalid.");
     return;
@@ -39,7 +39,7 @@ SchoolsMaplet.prototype.setTotalSchools = function (schools) {
  * Return the _totalSchools;
  * @returns {*}
  */
-SchoolsMaplet.prototype.getTotalSchools = function () {
+SchoolsFragment.prototype.getTotalSchools = function () {
   return this._totalSchools;
 };
 
@@ -47,7 +47,7 @@ SchoolsMaplet.prototype.getTotalSchools = function () {
  * Return the number of selected schools.
  * @returns {number|*}
  */
-SchoolsMaplet.prototype.getSelectedSchools = function () {
+SchoolsFragment.prototype.getSelectedSchools = function () {
   return this._selectedSchools;
 };
 
@@ -55,7 +55,7 @@ SchoolsMaplet.prototype.getSelectedSchools = function () {
  * Recalculate the number of _selectedSchools according to the _activeCircle.
  * @private
  */
-SchoolsMaplet.prototype._recalculate = function () {
+SchoolsFragment.prototype._recalculate = function () {
   this._selectedSchools = Math.round(this._activeCircle * this._totalSchools / 100);
-  this.emitEvent(SchoolsMaplet.Events.SCHOOLS_CHANGE, [this._selectedSchools]);
+  this.emitEvent(SchoolsFragment.Events.SCHOOLS_CHANGE, [this._selectedSchools]);
 };
