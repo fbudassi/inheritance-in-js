@@ -1,10 +1,10 @@
 'use strict';
 
 /**
- * Farmers Maplet.
+ * Farmers Fragment.
  */
-var FarmersMaplet = Class(Maplet, {
-  $statics: {
+var FarmersFragment = Class(Fragment, {
+  $static: {
     FARMERS_PER_SCHOOL: 20,
     FARMERS_PER_DEPOT: 50,
     DEFAULT_TOTAL_FARMERS: 1000,
@@ -15,23 +15,23 @@ var FarmersMaplet = Class(Maplet, {
     }
   },
 
-  constructor: function (name, totalFarmers, hectaresPerFarmer, depotsMaplet, schoolsMaplet) {
+  constructor: function (name, totalFarmers, hectaresPerFarmer, depotsFragment, schoolsFragment) {
     // Set default initial values.
     this.setTotalFarmers(totalFarmers);
     this.setHectaresPerFarmer(hectaresPerFarmer);
-    this.setDepots(depotsMaplet.getSelectedDepots());
-    this.setSchools(schoolsMaplet.getSelectedSchools());
+    this.setDepots(depotsFragment.getSelectedDepots());
+    this.setSchools(schoolsFragment.getSelectedSchools());
 
-    // Register listeners to other maplets.
+    // Register listeners to other fragments.
     var that = this;
-    depotsMaplet.addListener(DepotsMaplet.Events.DEPOTS_CHANGE, function (value) {
+    depotsFragment.addListener(DepotsFragment.Events.DEPOTS_CHANGE, function (value) {
       that.setDepots(value);
     });
-    schoolsMaplet.addListener(SchoolsMaplet.Events.SCHOOLS_CHANGE, function (value) {
+    schoolsFragment.addListener(SchoolsFragment.Events.SCHOOLS_CHANGE, function (value) {
       that.setSchools(value);
     });
 
-    FarmersMaplet.$super.call(this, name); // Call parent's constructor.
+    FarmersFragment.$super.call(this, name); // Call parent's constructor.
   },
 
   /**
@@ -124,10 +124,10 @@ var FarmersMaplet = Class(Maplet, {
       return;
     }
 
-    var farmersPerDepots = Math.min(this._depots * FarmersMaplet.FARMERS_PER_DEPOT, this._totalFarmers);
-    var farmersPerSchools = Math.min(this._schools * FarmersMaplet.FARMERS_PER_SCHOOL, this._totalFarmers);
+    var farmersPerDepots = Math.min(this._depots * FarmersFragment.FARMERS_PER_DEPOT, this._totalFarmers);
+    var farmersPerSchools = Math.min(this._schools * FarmersFragment.FARMERS_PER_SCHOOL, this._totalFarmers);
     this._selectedFarmers = Math.round((farmersPerDepots + farmersPerSchools) / 2);
-    this.emitEvent(FarmersMaplet.Events.FARMERS_CHANGE, [this._selectedFarmers]);
+    this.emitEvent(FarmersFragment.Events.FARMERS_CHANGE, [this._selectedFarmers]);
 
     // Selected farmers affects the total number of hectares.
     this._recalculateTotalHectares();
@@ -143,6 +143,6 @@ var FarmersMaplet = Class(Maplet, {
     }
 
     this._totalHectares = Math.round(this._selectedFarmers * this._hectaresPerFarmer * 100) / 100;
-    this.emitEvent(FarmersMaplet.Events.TOTAL_HECTARES_CHANGE, [this._totalHectares]);
+    this.emitEvent(FarmersFragment.Events.TOTAL_HECTARES_CHANGE, [this._totalHectares]);
   }
 });

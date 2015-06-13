@@ -1,10 +1,10 @@
 'use strict';
 
 /**
- * Depots Maplet.
+ * Depots Fragment.
  */
-var DepotsMaplet = Class(CircleMaplet, {
-  $statics: {
+var DepotsFragment = Class(CircleFragment, {
+  $static: {
     DEFAULT_TOTAL_DEPOTS: 40,
     DEFAULT_ACTIVE_CIRCLE: 50,
     Events: {
@@ -14,7 +14,7 @@ var DepotsMaplet = Class(CircleMaplet, {
 
   constructor: function (name, activeCircle, totalDepots) {
     this.setTotalDepots(totalDepots);
-    DepotsMaplet.$super.call(this, name, activeCircle); // Call parent's constructor.
+    DepotsFragment.$super.call(this, name, activeCircle); // Call parent's constructor.
   },
 
   /**
@@ -53,6 +53,6 @@ var DepotsMaplet = Class(CircleMaplet, {
    */
   _recalculate: function () {
     this._selectedDepots = Math.round(this._activeCircle * this._totalDepots / 100);
-    this.emitEvent(DepotsMaplet.Events.DEPOTS_CHANGE, [this._selectedDepots]);
+    this.emitEvent(DepotsFragment.Events.DEPOTS_CHANGE, [this._selectedDepots]);
   }
 });

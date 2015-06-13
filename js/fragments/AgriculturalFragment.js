@@ -1,10 +1,10 @@
 'use strict';
 
 /**
- * Agricultural Maplet.
+ * Agricultural Fragment.
  */
-var AgriculturalMaplet = Class(Maplet, {
-  $statics: {
+var AgriculturalFragment = Class(Fragment, {
+  $static: {
     Events: {
       PRICE_PER_KG_CHANGE: "pricePerKgChange",
       KG_PER_HECTARE_CHANGE: "kgPerHectareChange"
@@ -19,7 +19,7 @@ var AgriculturalMaplet = Class(Maplet, {
 
   constructor: function (name, crop) {
     this.setCrop(crop);
-    AgriculturalMaplet.$super.call(this, name); // Call parent's constructor.
+    AgriculturalFragment.$super.call(this, name); // Call parent's constructor.
   },
 
   /**
@@ -27,12 +27,12 @@ var AgriculturalMaplet = Class(Maplet, {
    * @param crop An integer bigger than 0.
    */
   setCrop: function (crop) {
-    if (AgriculturalMaplet.Crops[crop] === undefined) {
+    if (AgriculturalFragment.Crops[crop] === undefined) {
       console.error("Crop type is invalid.");
       return;
     }
 
-    this._crop = AgriculturalMaplet.Crops[crop];
+    this._crop = AgriculturalFragment.Crops[crop];
 
     // Set default values based on crop type.
     this.setPricePerKg(this._crop.pricePerKg);
@@ -58,7 +58,7 @@ var AgriculturalMaplet = Class(Maplet, {
     }
 
     this._pricePerKg = pricePerKg;
-    this.emitEvent(AgriculturalMaplet.Events.PRICE_PER_KG_CHANGE, [this._pricePerKg]);
+    this.emitEvent(AgriculturalFragment.Events.PRICE_PER_KG_CHANGE, [this._pricePerKg]);
   },
 
   /**
@@ -80,7 +80,7 @@ var AgriculturalMaplet = Class(Maplet, {
     }
 
     this._kgPerHectare = kgPerHectare;
-    this.emitEvent(AgriculturalMaplet.Events.KG_PER_HECTARE_CHANGE, [this._kgPerHectare]);
+    this.emitEvent(AgriculturalFragment.Events.KG_PER_HECTARE_CHANGE, [this._kgPerHectare]);
   },
 
   /**

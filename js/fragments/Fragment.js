@@ -1,15 +1,15 @@
 'use strict';
 
 /**
- * Maplet Base. It extends EventEmitter to let maplets fire events and react to them.
+ * Fragment Base. It extends EventEmitter to let fragments fire events and react to them.
  */
-var Maplet = Class(EventEmitter, {
+var Fragment = Class(EventEmitter, {
   constructor: function (name) {
     this._name = name;
   },
 
   /**
-   * Returns Maplet _name.
+   * Returns Fragment _name.
    * @returns {*}
    */
   getName: function () {
@@ -21,6 +21,6 @@ var Maplet = Class(EventEmitter, {
    * @returns {*}
    */
   toString: function () {
-    return "Maplet Name: " + this._name;
+    return "Fragment Name: " + this._name;
   }
 });

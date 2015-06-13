@@ -1,35 +1,35 @@
 'use strict';
 
 /**
- * Financial Maplet.
+ * Financial Fragment.
  */
-var FinancialMaplet = Class(Maplet, {
-  $statics: {
+var FinancialFragment = Class(Fragment, {
+  $static: {
     Events: {
       MONEY_PER_HECTARE_CHANGE: "moneyPerHectareChange",
       TOTAL_AMOUNT_CHANGE: "totalAmountChange"
     }
   },
 
-  constructor: function (name, farmersMaplet, agriculturalMaplet) {
+  constructor: function (name, farmersFragment, agriculturalFragment) {
     // Set default initial values.
-    this.setCropHectares(farmersMaplet.getTotalHectares());
-    this.setPricePerKg(agriculturalMaplet.getPricePerKg());
-    this.setKgPerHectare(agriculturalMaplet.getKgPerHectare());
+    this.setCropHectares(farmersFragment.getTotalHectares());
+    this.setPricePerKg(agriculturalFragment.getPricePerKg());
+    this.setKgPerHectare(agriculturalFragment.getKgPerHectare());
 
-    // Register listeners to other maplets.
+    // Register listeners to other fragments.
     var that = this;
-    farmersMaplet.addListener(FarmersMaplet.Events.TOTAL_HECTARES_CHANGE, function (value) {
+    farmersFragment.addListener(FarmersFragment.Events.TOTAL_HECTARES_CHANGE, function (value) {
       that.setCropHectares(value);
     });
-    agriculturalMaplet.addListener(AgriculturalMaplet.Events.PRICE_PER_KG_CHANGE, function (value) {
+    agriculturalFragment.addListener(AgriculturalFragment.Events.PRICE_PER_KG_CHANGE, function (value) {
       that.setPricePerKg(value);
     });
-    agriculturalMaplet.addListener(AgriculturalMaplet.Events.KG_PER_HECTARE_CHANGE, function (value) {
+    agriculturalFragment.addListener(AgriculturalFragment.Events.KG_PER_HECTARE_CHANGE, function (value) {
       that.setKgPerHectare(value);
     });
 
-    FinancialMaplet.$super.call(this, name); // Call parent's constructor.
+    FinancialFragment.$super.call(this, name); // Call parent's constructor.
   },
 
   /**
@@ -84,7 +84,7 @@ var FinancialMaplet = Class(Maplet, {
     }
 
     this._moneyPerHectare = Math.round(this._pricePerKg * this._kgPerHectare * 100) / 100;
-    this.emitEvent(FinancialMaplet.Events.MONEY_PER_HECTARE_CHANGE, [this._moneyPerHectare]);
+    this.emitEvent(FinancialFragment.Events.MONEY_PER_HECTARE_CHANGE, [this._moneyPerHectare]);
 
     // Monet per hectare affects the total amount of money.
     this._recalculateTotalAmount();
@@ -100,6 +100,6 @@ var FinancialMaplet = Class(Maplet, {
     }
 
     this._totalAmount = Math.round(this._cropHectares * this._moneyPerHectare * 100) / 100;
-    this.emitEvent(FinancialMaplet.Events.TOTAL_AMOUNT_CHANGE, [this._totalAmount]);
+    this.emitEvent(FinancialFragment.Events.TOTAL_AMOUNT_CHANGE, [this._totalAmount]);
   }
 });

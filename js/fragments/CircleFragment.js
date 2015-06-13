@@ -1,12 +1,12 @@
 'use strict';
 
 /**
- * Common features inherited by DepotsMaplet and SchoolsMaplet.
+ * Common features inherited by DepotsFragment and SchoolsFragment.
  */
-var CircleMaplet = Class(Maplet, {
+var CircleFragment = Class(Fragment, {
   constructor: function (name, activeCircle) {
     this.setActiveCircle(activeCircle);
-    CircleMaplet.$super.call(this, name); // Call parent's constructor.
+    CircleFragment.$super.call(this, name); // Call parent's constructor.
   },
 
   /**
@@ -32,7 +32,7 @@ var CircleMaplet = Class(Maplet, {
   },
 
   /**
-   * Must be implemented by inherited CircleMaplets.
+   * Must be implemented by inherited CircleFragments.
    * @private
    */
   _recalculate: function () {
