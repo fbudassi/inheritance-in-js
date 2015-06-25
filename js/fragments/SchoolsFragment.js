@@ -4,7 +4,7 @@
  * Schools Fragment.
  */
 var SchoolsFragment = Class(CircleFragment, {
-  $static: {
+  $const: {
     DEFAULT_TOTAL_SCHOOLS: 70,
     DEFAULT_ACTIVE_CIRCLE: 50,
     Events: {

@@ -4,7 +4,7 @@
  * Financial Fragment.
  */
 var FinancialFragment = Class(Fragment, {
-  $static: {
+  $const: {
     Events: {
       MONEY_PER_HECTARE_CHANGE: "moneyPerHectareChange",
       TOTAL_AMOUNT_CHANGE: "totalAmountChange"

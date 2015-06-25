@@ -4,7 +4,7 @@
  * Agricultural Fragment.
  */
 var AgriculturalFragment = Class(Fragment, {
-  $static: {
+  $const: {
     Events: {
       PRICE_PER_KG_CHANGE: "pricePerKgChange",
       KG_PER_HECTARE_CHANGE: "kgPerHectareChange"

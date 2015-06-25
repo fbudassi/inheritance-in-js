@@ -4,7 +4,7 @@
  * Farmers Fragment.
  */
 var FarmersFragment = Class(Fragment, {
-  $static: {
+  $const: {
     FARMERS_PER_SCHOOL: 20,
     FARMERS_PER_DEPOT: 50,
     DEFAULT_TOTAL_FARMERS: 1000,

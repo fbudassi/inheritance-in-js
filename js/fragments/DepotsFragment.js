@@ -4,7 +4,7 @@
  * Depots Fragment.
  */
 var DepotsFragment = Class(CircleFragment, {
-  $static: {
+  $const: {
     DEFAULT_TOTAL_DEPOTS: 40,
     DEFAULT_ACTIVE_CIRCLE: 50,
     Events: {
