@@ -36,7 +36,7 @@ FarmersFragment.Events = {
 };
 
 // Freeze object to prevent accidental changes.
-Utils.deepFreeze(FarmersFragment);
+Util.deepFreeze(FarmersFragment);
 
 /**
  * Set the total number of farmers.

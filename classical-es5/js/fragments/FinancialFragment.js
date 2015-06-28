@@ -34,7 +34,7 @@ FinancialFragment.Events = {
 };
 
 // Freeze object to prevent accidental changes.
-Utils.deepFreeze(FinancialFragment);
+Util.deepFreeze(FinancialFragment);
 
 /**
  * Set the total number of hectares.

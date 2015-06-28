@@ -19,7 +19,7 @@ SchoolsFragment.Events = {
 };
 
 // Freeze object to prevent accidental changes.
-Utils.deepFreeze(SchoolsFragment);
+Util.deepFreeze(SchoolsFragment);
 
 /**
  * Set the total number of schools.

@@ -19,7 +19,7 @@ DepotsFragment.Events = {
 };
 
 // Freeze object to prevent accidental changes.
-Utils.deepFreeze(DepotsFragment);
+Util.deepFreeze(DepotsFragment);
 
 /**
  * Set the total number of depots.

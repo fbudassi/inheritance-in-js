@@ -25,7 +25,7 @@ AgriculturalFragment.Crops = {
 };
 
 // Freeze object to prevent accidental changes.
-Utils.deepFreeze(AgriculturalFragment);
+Util.deepFreeze(AgriculturalFragment);
 
 /**
  * Set crop type.
