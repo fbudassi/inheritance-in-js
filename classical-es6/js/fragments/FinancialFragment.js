@@ -97,7 +97,11 @@ class FinancialFragment extends Fragment {
   }
 }
 
+// Class Constants.
 FinancialFragment.Events = {
   MONEY_PER_HECTARE_CHANGE: "moneyPerHectareChange",
   TOTAL_AMOUNT_CHANGE: "totalAmountChange"
 };
+
+// Freeze class to prevent accidental changes.
+Util.deepFreeze(FinancialFragment);

@@ -49,8 +49,12 @@ class SchoolsFragment extends CircleFragment {
   }
 }
 
+// Class Constants.
 SchoolsFragment.DEFAULT_TOTAL_SCHOOLS = 70;
 SchoolsFragment.DEFAULT_ACTIVE_CIRCLE = 50;
 SchoolsFragment.Events = {
   SCHOOLS_CHANGE: "schoolsChange"
 };
+
+// Freeze class to prevent accidental changes.
+Util.deepFreeze(SchoolsFragment);

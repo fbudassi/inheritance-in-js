@@ -136,6 +136,7 @@ class FarmersFragment extends Fragment {
   }
 }
 
+// Class Constants.
 FarmersFragment.FARMERS_PER_SCHOOL = 20;
 FarmersFragment.FARMERS_PER_DEPOT = 50;
 FarmersFragment.DEFAULT_TOTAL_FARMERS = 1000;
@@ -145,3 +146,6 @@ FarmersFragment.Events = {
   FARMERS_CHANGE: "farmersChange",
   TOTAL_HECTARES_CHANGE: "totalHectaresChange"
 };
+
+// Freeze class to prevent accidental changes.
+Util.deepFreeze(FarmersFragment);

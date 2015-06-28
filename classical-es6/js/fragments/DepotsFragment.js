@@ -49,10 +49,13 @@ class DepotsFragment extends CircleFragment {
   }
 }
 
-
+// Class Constants.
 DepotsFragment.DEFAULT_TOTAL_DEPOTS = 40;
 DepotsFragment.DEFAULT_ACTIVE_CIRCLE = 50;
 
 DepotsFragment.Events = {
   DEPOTS_CHANGE: "depotsChange"
 };
+
+// Freeze class to prevent accidental changes.
+Util.deepFreeze(DepotsFragment);

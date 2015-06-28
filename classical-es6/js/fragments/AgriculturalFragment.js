@@ -79,6 +79,7 @@ class AgriculturalFragment extends Fragment {
   }
 }
 
+// Class Constants.
 AgriculturalFragment.Events = {
   PRICE_PER_KG_CHANGE: "pricePerKgChange",
   KG_PER_HECTARE_CHANGE: "kgPerHectareChange"
@@ -90,3 +91,6 @@ AgriculturalFragment.Crops = {
   TOBACCO: {id: "TOBACCO", name: "Tobacco", pricePerKg: 2, kgPerHectare: 500},
   GROUND_NUTS: {id: "GROUND_NUTS", name: "Ground Nuts", pricePerKg: 3, kgPerHectare: 330}
 };
+
+// Freeze class to prevent accidental changes.
+Util.deepFreeze(AgriculturalFragment);
