@@ -36,6 +36,6 @@ var CircleFragment = Class(Fragment, {
    * @private
    */
   _recalculate: function () {
-    console.error("This class is not meant to be instantiated.");
+    throw new Error("Method not implemented.");
   }
 });

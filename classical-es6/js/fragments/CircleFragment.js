@@ -36,6 +36,6 @@ class CircleFragment extends Fragment {
    * @private
    */
   _recalculate() {
-    console.error("This class is not meant to be instantiated.");
+    throw new Error("Method not implemented.");
   }
 }
